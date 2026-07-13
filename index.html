@@ -40,6 +40,7 @@ input,select{font-family:inherit}
 body.content-protected{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body.content-protected input,body.content-protected textarea,body.content-protected select{user-select:text;-webkit-user-select:text;-webkit-touch-callout:default}
 body.content-protected img,body.content-protected svg{-webkit-user-drag:none;user-drag:none}
+body.content-protected.screenshot-guard.screen-hidden main,body.content-protected.screenshot-guard.screen-hidden .topbar,body.content-protected.screenshot-guard.screen-hidden .site-footer{filter:blur(18px)}
 :focus-visible{outline:3px solid var(--blue-lt);outline-offset:3px}
 .skip-link{position:fixed;left:16px;top:-64px;z-index:500;background:var(--white);color:var(--ink);padding:10px 14px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 .skip-link:focus{top:16px}
@@ -260,6 +261,7 @@ body.content-protected img,body.content-protected svg{-webkit-user-drag:none;use
 </style>
 </head>
 <body>
+<script src="./content-protection.js"></script>
 <a class="skip-link" href="#main-content">본문으로 바로가기</a>
 
 <div class="topbar">
@@ -559,19 +561,6 @@ body.content-protected img,body.content-protected svg{-webkit-user-drag:none;use
 
 <script>
 let lastFocusedElement = null;
-
-const isEditableTarget=target=>target instanceof Element&&Boolean(target.closest("input,textarea,select,[contenteditable='true']"));
-document.body.classList.add("content-protected");
-document.addEventListener("contextmenu",event=>{event.preventDefault();event.stopImmediatePropagation();},true);
-document.addEventListener("dragstart",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("selectstart",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("copy",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("cut",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("keydown",event=>{
-	const key=event.key.toLowerCase(),commandKey=event.ctrlKey||event.metaKey;
-	const blocked=event.key==="F12"||event.key==="ContextMenu"||(event.shiftKey&&event.key==="F10")||(commandKey&&event.shiftKey&&["i","j","c"].includes(key))||(commandKey&&["u","s","p"].includes(key))||(!isEditableTarget(event.target)&&commandKey&&["c","x","a"].includes(key));
-	if(blocked){event.preventDefault();event.stopImmediatePropagation();}
-},true);
 
 function openModal(overlayId){
 	const overlay = document.getElementById(overlayId);

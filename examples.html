@@ -27,6 +27,8 @@ html{scroll-behavior:smooth}
 body{font-family:'IBM Plex Sans KR',sans-serif;background:var(--canvas);color:var(--ink);font-size:15px;line-height:1.65}
 body.content-protected{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body.content-protected input,body.content-protected textarea,body.content-protected select{user-select:text;-webkit-user-select:text;-webkit-touch-callout:default}
+body.content-protected img,body.content-protected svg{-webkit-user-drag:none;user-drag:none}
+body.content-protected.screenshot-guard.screen-hidden main,body.content-protected.screenshot-guard.screen-hidden .topbar,body.content-protected.screenshot-guard.screen-hidden .footer{filter:blur(18px)}
 h1,h2,h3{font-family:'Noto Sans KR',sans-serif}
 a{color:inherit}
 button{font:inherit;cursor:pointer}
@@ -84,6 +86,7 @@ h1{font-size:clamp(32px,5vw,52px);line-height:1.23;letter-spacing:-.045em;max-wi
 </style>
 </head>
 <body>
+<script src="./content-protection.js"></script>
 <a class="skip-link" href="#examples">본문으로 건너뛰기</a>
 <header class="topbar">
 	<div class="topbar-inner">
@@ -175,18 +178,6 @@ document.querySelectorAll(".domain-tab").forEach(button=>button.addEventListener
 }));
 renderCategories();renderExamples();
 
-const isEditableTarget=target=>target instanceof Element&&Boolean(target.closest("input,textarea,select,[contenteditable='true']"));
-document.body.classList.add("content-protected");
-document.addEventListener("contextmenu",event=>{event.preventDefault();event.stopImmediatePropagation();},true);
-document.addEventListener("dragstart",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("selectstart",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("copy",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("cut",event=>{if(!isEditableTarget(event.target))event.preventDefault();},true);
-document.addEventListener("keydown",event=>{
-	const key=event.key.toLowerCase(),commandKey=event.ctrlKey||event.metaKey;
-	const blocked=event.key==="F12"||event.key==="ContextMenu"||(event.shiftKey&&event.key==="F10")||(commandKey&&event.shiftKey&&["i","j","c"].includes(key))||(commandKey&&["u","s","p"].includes(key))||(!isEditableTarget(event.target)&&commandKey&&["c","x","a"].includes(key));
-	if(blocked){event.preventDefault();event.stopImmediatePropagation();}
-},true);
 </script>
 </body>
 </html>
