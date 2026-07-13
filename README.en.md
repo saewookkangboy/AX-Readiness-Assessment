@@ -20,17 +20,16 @@ A self-service web tool by **TROE** for AI transformation (AX). Assess organizat
 3. [Pages](#pages)
 4. [Assessment Flow](#assessment-flow)
 5. [Readiness Model](#readiness-model)
-6. [ROI Calculation](#roi-calculation)
-7. [Lead Capture](#lead-capture)
-8. [Architecture](#architecture)
-9. [Project Structure](#project-structure)
-10. [Local Development](#local-development)
-11. [Deployment](#deployment)
-12. [Deployment Verification](#deployment-verification)
-13. [Design System](#design-system)
-14. [Accessibility, Security & Privacy](#accessibility-security--privacy)
-15. [Operations Checklist](#operations-checklist)
-16. [Related Documents](#related-documents)
+6. [Lead Capture](#lead-capture)
+7. [Architecture](#architecture)
+8. [Project Structure](#project-structure)
+9. [Local Development](#local-development)
+10. [Deployment](#deployment)
+11. [Deployment Verification](#deployment-verification)
+12. [Design System](#design-system)
+13. [Accessibility, Security & Privacy](#accessibility-security--privacy)
+14. [Operations Checklist](#operations-checklist)
+15. [Related Documents](#related-documents)
 
 ---
 
@@ -176,51 +175,6 @@ Up to **3 repetitive tasks**:
 
 ---
 
-## ROI Calculation
-
-### 1. Base savings (per task)
-
-```
-monthly_low  = hours × count × reduction_min × hourly_wage
-monthly_high = hours × count × reduction_max × hourly_wage
-expected     = (monthly_low + monthly_high) / 2
-```
-
-### 2. Readiness adjustment (realization rate)
-
-```
-realization = 0.55 + ((total_score - 7) / (35 - 7)) × 0.40
-```
-
-Range: 55% (score 7) to 95% (score 35).
-
-### 3. Adoption ramp
-
-| Month | Efficiency |
-|-------|------------|
-| Month 1 | 50% |
-| Month 2 | 75% |
-| Month 3+ | 100% |
-
-### 4. Net savings, payback, ROI
-
-```
-net_monthly (steady state) = adjusted_savings - monthly_ops_cost
-```
-
-- **Payback**: Cumulative net cash flow vs. initial investment (36-month simulation)
-- **12-month ROI**: `(cumulative_12m - initial_cost) / initial_cost × 100`
-
-### Confidence label
-
-| Tasks entered | Label |
-|---------------|-------|
-| 1 | Reference only |
-| 2 | Moderate |
-| 3 | High |
-
----
-
 ## Lead Capture
 
 ### Intent types
@@ -319,20 +273,6 @@ stateDiagram-v2
 		auto-save to localStorage
 		resume banner within 14 days
 	end note
-```
-
-### ROI calculation pipeline
-
-```mermaid
-flowchart LR
-	A["Task input<br/>(up to 3)"] --> B["Savings range<br/>low / high / expected"]
-	C["Readiness total<br/>(7–35)"] --> D["Realization rate<br/>55% – 95%"]
-	B --> E["Adjusted savings"]
-	D --> E
-	E --> F["Subtract monthly ops"]
-	F --> G["Ramp simulation<br/>M1:50% M2:75% M3+:100%"]
-	G --> H["Payback · 12m ROI"]
-	H --> I["Render results<br/>radar · weak areas · CTA"]
 ```
 
 ### Lead submission sequence
