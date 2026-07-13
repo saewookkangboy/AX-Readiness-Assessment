@@ -52,7 +52,12 @@ body.content-protected.screenshot-guard.screen-hidden main,body.content-protecte
 }
 .btn:active,.btn-next:not(:disabled):active,.btn-back:active,.scale button:active,.proof-arrow:active,.add-task:active,.restart-link:active{transform:scale(.97)}
 .close:hover{color:var(--ink)}
-.close:active{transform:scale(.9)}
+.close:hover .close-mark::before,.close:hover .close-mark::after{background:var(--ink)}
+.close:active{transform:scale(.92)}
+.close-mark{position:relative;display:block;width:14px;height:14px}
+.close-mark::before,.close-mark::after{content:"";position:absolute;top:50%;left:50%;width:14px;height:1.5px;background:currentColor;border-radius:1px;transition:background-color .15s ease}
+.close-mark::before{transform:translate(-50%,-50%) rotate(45deg)}
+.close-mark::after{transform:translate(-50%,-50%) rotate(-45deg)}
 
 /* 화면 전환에만 쓰는 짧은 등장 애니메이션 */
 @keyframes revealUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -214,12 +219,13 @@ body.content-protected.screenshot-guard.screen-hidden main,body.content-protecte
 /* Lead modal */
 .overlay{position:fixed;inset:0;background:rgba(5,11,18,.55);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s ease}
 .overlay.on{opacity:1;pointer-events:auto}
-.modal{background:var(--white);border-radius:12px;max-width:420px;width:100%;padding:28px;transform:translateY(8px);transition:transform .2s ease}
+.modal{position:relative;background:var(--white);border-radius:12px;max-width:420px;width:100%;padding:28px;transform:translateY(8px);transition:transform .2s ease}
 .overlay.on .modal{transform:translateY(0)}
 .modal.modal-wide{max-width:640px}
-.modal h3{font-size:18px;margin-bottom:6px}
+.modal h3{font-size:18px;margin-bottom:6px;padding-right:32px}
 .modal .sub{font-size:13px;color:var(--muted);margin-bottom:20px}
-.modal .close{float:right;background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer}
+.modal .close{position:absolute;top:18px;right:18px;display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:none;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer}
+.modal .close:hover{background:var(--pale)}
 .modal .how-grid{grid-template-columns:1fr 1fr;margin-top:20px}
 .modal .success{text-align:center;padding:20px 0}
 .modal .success .ico{width:52px;height:52px;border-radius:50%;background:var(--grn-soft);color:var(--green);font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
@@ -336,7 +342,7 @@ body.content-protected.screenshot-guard.screen-hidden main,body.content-protecte
 <!-- 진행 방식 모달 -->
 <div class="overlay" id="howOverlay" aria-hidden="true">
 	<div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="howTitle">
-		<button class="close" onclick="closeHow()" aria-label="진행 방식 닫기">닫기</button>
+		<button type="button" class="close" onclick="closeHow()" aria-label="진행 방식 닫기"><span class="close-mark" aria-hidden="true"></span></button>
 		<h3 id="howTitle">진행 방식 · 4단계</h3>
 		<p class="sub">약 3분이면 충분합니다. 각 단계에서 "이전" 버튼으로 언제든 돌아가 수정할 수 있습니다.</p>
 		<div class="how-grid">
@@ -512,7 +518,7 @@ body.content-protected.screenshot-guard.screen-hidden main,body.content-protecte
 <!-- Lead capture modal -->
 <div class="overlay" id="leadOverlay" aria-hidden="true">
 	<div class="modal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
-		<button class="close" onclick="closeLead()" aria-label="신청 창 닫기">닫기</button>
+		<button type="button" class="close" onclick="closeLead()" aria-label="신청 창 닫기"><span class="close-mark" aria-hidden="true"></span></button>
 		<form id="leadForm" onsubmit="submitLead(event)" novalidate>
 			<h3 id="leadTitle">결과 리포트를 받아보세요</h3>
 			<p class="sub" id="leadSub">이메일로 진단 결과 PDF를 보내드립니다.</p>
