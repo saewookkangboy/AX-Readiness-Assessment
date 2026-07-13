@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ax.allrounder.im/sitemap.xml
