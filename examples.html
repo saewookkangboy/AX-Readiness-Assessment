@@ -149,7 +149,7 @@ const examples=[
 	{domain:"distribution",category:"영업",title:"고객사 미팅 브리핑 Agent",copy:"고객사 공개 정보, 최근 뉴스, 기존 CRM 기록을 모아 미팅 전 확인할 질문과 후속 조치를 한 페이지로 정리합니다.",start:"영업 담당자 3명의 실제 미팅 10건으로 브리핑 품질을 비교합니다.",kpi:"미팅 준비 시간 · 후속 조치 등록률",guard:"공개 정보와 승인된 CRM 필드만 사용"},
 	{domain:"distribution",category:"영업",title:"수요·재고 매칭 Agent",copy:"고객 발주 요청과 ERP 재고·입고 예정 정보를 비교해 대체 부품, 납기 위험, 확인이 필요한 조건을 제안합니다.",start:"품목군 하나에서 추천만 제공하고 실제 주문·가격 결정은 분리합니다.",kpi:"재고 조회 시간 · 납기 위험 조기 발견",guard:"가격·공급 조건은 영업 책임자 승인"},
 	{domain:"distribution",category:"경영기획",title:"경영 브리핑 Agent",copy:"매출, 재고, 환율, 주요 이슈를 정해진 경영회의 형식으로 요약하고 수치 출처와 변동 원인을 함께 표시합니다.",start:"기존 월간 보고서 한 종류를 대상으로 초안 작성 시간과 오류를 측정합니다.",kpi:"보고서 작성 시간 · 수치 오류율",guard:"원천 시스템 수치와 출처 대조"},
-	{domain:"distribution",category:"경영기획",title:"가격 변동 시나리오 Agent",copy:"환율과 부품 가격 변화에 따른 매출·영업이익 영향을 낙관, 기준, 비관 조건으로 나눠 의사결정 옵션을 정리합니다.",start:"실제 의사결정이 아닌 과거 한 분기 데이터를 사용해 시뮬레이션합니다.",kpi:"분석 시간 · 시나리오 재사용률",guard:"가정과 실제값을 명확히 구분"},
+	{domain:"distribution",category:"경영기획",title:"가격 변동 시나리오 Agent",copy:"환율과 부품 가격 변화에 따른 매출·영업이익 영향을 낙관, 기준, 비관 조건으로 나눠 의사결정 옵���을 정리합니다.",start:"실제 의사결정이 아닌 과거 한 분기 데이터를 사용해 시뮬레이션합니다.",kpi:"분석 시간 · 시나리오 재사용률",guard:"가정과 실제값을 명확히 구분"},
 	{domain:"distribution",category:"인사총무",title:"사내 규정 안내 Agent",copy:"연차, 경비, 복리후생, 총무 요청처럼 반복되는 질문에 승인된 사내 규정을 근거로 답하고 담당 부서 연결이 필요한 경우를 구분합니다.",start:"조회 빈도가 높은 규정 20개와 FAQ만 연결해 내부 파일럿을 시작합니다.",kpi:"반복 문의 감소율 · 오답률",guard:"답변마다 근거 문서와 개정일 표시"},
 	{domain:"distribution",category:"인사총무",title:"입사 온보딩 Agent",copy:"입사일과 직무에 맞춰 교육, 계정 신청, 필수 문서, 첫 30일 체크리스트를 안내하고 누락된 준비 항목을 담당자에게 알립니다.",start:"신규 입사자 한 직군의 체크리스트 안내부터 자동화합니다.",kpi:"행정 처리 시간 · 준비 항목 누락률",guard:"개인정보 접근 권한 최소화"},
 	{domain:"distribution",category:"운영",title:"공급망 위험 탐지 Agent",copy:"주요 제조사와 물류 경로의 생산 차질, 규제, 자연재해 정보를 모니터링해 영향 품목과 확인 순서를 제안합니다.",start:"상위 매출 품목 20개와 공식 정보원만 연결해 일일 브리핑을 운영합니다.",kpi:"위험 인지 시간 · 선제 대응 건수",guard:"출처 신뢰도와 발생 시각 확인"},
@@ -179,5 +179,6 @@ document.querySelectorAll(".domain-tab").forEach(button=>button.addEventListener
 renderCategories();renderExamples();
 
 </script>
+<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </body>
 </html>
